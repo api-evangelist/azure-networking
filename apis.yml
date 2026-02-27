@@ -1,0 +1,179 @@
+name: Azure Networking APIs
+description: A collection of Azure Networking APIs for managing virtual networks, load balancers, application gateways, and network security
+image: https://azure.microsoft.com/svghandler/azure-networking.svg
+created: 2024-01-15 00:00:00+00:00
+modified: 2024-01-15 00:00:00+00:00
+specificationVersion: '0.18'
+tags:
+- networking
+- cloud
+- infrastructure
+- azure
+- microsoft
+apis:
+- name: Azure Virtual Networks API
+  description: Manage Azure Virtual Networks (VNets) including subnets, peering, and network configurations
+  image: https://azure.microsoft.com/svghandler/virtual-network.svg
+  humanURL: https://azure.microsoft.com/en-us/services/virtual-network/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
+  tags:
+  - virtual networks
+  - vnet
+  - subnets
+  - peering
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/virtualnetwork/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/virtualNetwork.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/virtual-network/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure Load Balancer API
+  description: Distribute traffic across multiple virtual machines and services with Azure Load Balancer
+  image: https://azure.microsoft.com/svghandler/load-balancer.svg
+  humanURL: https://azure.microsoft.com/en-us/services/load-balancer/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
+  tags:
+  - load balancer
+  - traffic distribution
+  - high availability
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/load-balancer/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/loadBalancer.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/load-balancer/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure Application Gateway API
+  description: Web traffic load balancer with application-level routing and SSL termination
+  image: https://azure.microsoft.com/svghandler/application-gateway.svg
+  humanURL: https://azure.microsoft.com/en-us/services/application-gateway/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
+  tags:
+  - application gateway
+  - web application firewall
+  - ssl termination
+  - layer 7 load balancing
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/application-gateway/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/applicationGateway.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/application-gateway/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure Network Security Groups API
+  description: Control network traffic to and from Azure resources with security rules
+  image: https://azure.microsoft.com/svghandler/network-security-groups.svg
+  humanURL: https://azure.microsoft.com/en-us/services/network-security-groups/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
+  tags:
+  - security
+  - firewall
+  - network security groups
+  - nsg
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/networkSecurityGroup.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/virtual-network/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure VPN Gateway API
+  description: Establish secure cross-premises connectivity between Azure and on-premises networks
+  image: https://azure.microsoft.com/svghandler/vpn-gateway.svg
+  humanURL: https://azure.microsoft.com/en-us/services/vpn-gateway/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
+  tags:
+  - vpn
+  - gateway
+  - hybrid connectivity
+  - site-to-site
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/network-gateway/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/virtualNetworkGateway.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure Traffic Manager API
+  description: DNS-based traffic load balancer for distributing traffic globally
+  image: https://azure.microsoft.com/svghandler/traffic-manager.svg
+  humanURL: https://azure.microsoft.com/en-us/services/traffic-manager/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
+  tags:
+  - traffic manager
+  - dns
+  - global load balancing
+  - failover
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/trafficmanager/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/trafficmanager/resource-manager/Microsoft.Network/stable/2022-04-01/trafficmanager.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/traffic-manager/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure ExpressRoute API
+  description: Create private connections between Azure datacenters and on-premises infrastructure
+  image: https://azure.microsoft.com/svghandler/expressroute.svg
+  humanURL: https://azure.microsoft.com/en-us/services/expressroute/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
+  tags:
+  - expressroute
+  - private connectivity
+  - dedicated connection
+  - hybrid
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/expressroute/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/expressRouteCircuit.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/expressroute/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+- name: Azure Firewall API
+  description: Cloud-native network security service with built-in high availability
+  image: https://azure.microsoft.com/svghandler/azure-firewall.svg
+  humanURL: https://azure.microsoft.com/en-us/services/azure-firewall/
+  baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
+  tags:
+  - firewall
+  - security
+  - threat protection
+  - network security
+  properties:
+  - type: X-documentation
+    url: https://docs.microsoft.com/en-us/rest/api/firewall/
+  - type: X-openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/azureFirewall.json
+  - type: X-pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/azure-firewall/
+  - type: X-authentication
+    url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+common:
+- type: X-portal
+  url: https://portal.azure.com
+- type: X-support
+  url: https://azure.microsoft.com/en-us/support/
+- type: X-status
+  url: https://status.azure.com/
+- type: X-blog
+  url: https://azure.microsoft.com/en-us/blog/topics/networking/
+- type: X-terms-of-service
+  url: https://azure.microsoft.com/en-us/support/legal/
+maintainers:
+- FN: Microsoft Azure
+  email: azure-support@microsoft.com
+  url: https://azure.microsoft.com
