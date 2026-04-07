@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Azure Virtual Networks API
+  title: Azure Networking Azure Virtual Networks API
   description: >-
     Manage Azure Virtual Networks (VNets) including subnets, peering, and
     network configurations. Virtual Networks enable Azure resources to securely
@@ -44,7 +44,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks:
     get:
       operationId: VirtualNetworks_List
-      summary: List virtual networks
+      summary: Azure Networking List virtual networks
       description: >-
         Gets all virtual networks in a resource group. Returns a paginated
         list of virtual network resources with their properties and
@@ -67,10 +67,10 @@ paths:
         '404':
           description: Resource group not found.
 
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}
+  : get:
       operationId: VirtualNetworks_Get
-      summary: Get virtual network
+      summary: Azure Networking Get virtual network
       description: >-
         Gets the specified virtual network by resource group and name.
         Returns the full resource representation including address space,
@@ -95,7 +95,7 @@ paths:
           description: Virtual network not found.
     put:
       operationId: VirtualNetworks_CreateOrUpdate
-      summary: Create or update virtual network
+      summary: Azure Networking Create or update virtual network
       description: >-
         Creates a new virtual network or updates an existing virtual network
         in the specified resource group. The request body must include the
@@ -132,7 +132,7 @@ paths:
           description: Unauthorized. Authentication credentials are missing or invalid.
     delete:
       operationId: VirtualNetworks_Delete
-      summary: Delete virtual network
+      summary: Azure Networking Delete virtual network
       description: >-
         Deletes the specified virtual network. This operation is
         asynchronous and returns a 202 Accepted status while the deletion
@@ -157,7 +157,7 @@ paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualNetworks:
     get:
       operationId: VirtualNetworks_ListAll
-      summary: List all virtual networks
+      summary: Azure Networking List all virtual networks
       description: >-
         Gets all virtual networks in a subscription. Returns a paginated
         list of all virtual network resources across all resource groups.
@@ -176,10 +176,10 @@ paths:
         '401':
           description: Unauthorized. Authentication credentials are missing or invalid.
 
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets
+  : get:
       operationId: Subnets_List
-      summary: List subnets
+      summary: Azure Networking List subnets
       description: >-
         Gets all subnets in a virtual network. Returns a paginated list
         of subnet resources within the specified virtual network.
@@ -202,10 +202,10 @@ paths:
         '404':
           description: Virtual network not found.
 
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName}
+  : get:
       operationId: Subnets_Get
-      summary: Get subnet
+      summary: Azure Networking Get subnet
       description: >-
         Gets the specified subnet by virtual network and subnet name.
         Returns the full resource representation including address prefix,
@@ -231,7 +231,7 @@ paths:
           description: Subnet not found.
     put:
       operationId: Subnets_CreateOrUpdate
-      summary: Create or update subnet
+      summary: Azure Networking Create or update subnet
       description: >-
         Creates a new subnet or updates an existing subnet within the
         specified virtual network. The address prefix must be within the
@@ -269,7 +269,7 @@ paths:
           description: Unauthorized. Authentication credentials are missing or invalid.
     delete:
       operationId: Subnets_Delete
-      summary: Delete subnet
+      summary: Azure Networking Delete subnet
       description: >-
         Deletes the specified subnet from the virtual network.
       tags:
@@ -290,10 +290,10 @@ paths:
         '401':
           description: Unauthorized. Authentication credentials are missing or invalid.
 
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/virtualNetworkPeerings:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/virtualNetworkPeerings
+  : get:
       operationId: VirtualNetworkPeerings_List
-      summary: List virtual network peerings
+      summary: Azure Networking List virtual network peerings
       description: >-
         Gets all peerings in a virtual network. Returns a paginated list
         of peering resources for the specified virtual network.
@@ -314,10 +314,10 @@ paths:
         '401':
           description: Unauthorized. Authentication credentials are missing or invalid.
 
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/virtualNetworkPeerings/{virtualNetworkPeeringName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/virtualNetworkPeerings/{virtualNetworkPeeringName}
+  : get:
       operationId: VirtualNetworkPeerings_Get
-      summary: Get virtual network peering
+      summary: Azure Networking Get virtual network peering
       description: >-
         Gets the specified peering for a virtual network.
       tags:
@@ -346,7 +346,7 @@ paths:
           description: Peering not found.
     put:
       operationId: VirtualNetworkPeerings_CreateOrUpdate
-      summary: Create or update virtual network peering
+      summary: Azure Networking Create or update virtual network peering
       description: >-
         Creates or updates a peering in the specified virtual network.
         Peering enables connectivity between two virtual networks.
@@ -388,7 +388,7 @@ paths:
           description: Unauthorized. Authentication credentials are missing or invalid.
     delete:
       operationId: VirtualNetworkPeerings_Delete
-      summary: Delete virtual network peering
+      summary: Azure Networking Delete virtual network peering
       description: >-
         Deletes the specified peering from a virtual network.
       tags:
