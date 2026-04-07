@@ -27,10 +27,6 @@ security:
   - OAuth2Auth: []
 
 tags:
-  - name: Virtual Networks
-    description: >-
-      Operations for creating, updating, deleting, and listing Azure Virtual
-      Networks within subscriptions and resource groups.
   - name: Subnets
     description: >-
       Operations for managing subnets within a virtual network, including
@@ -40,6 +36,10 @@ tags:
       Operations for creating and managing peering connections between
       virtual networks.
 
+  - name: Virtual Networks
+    description: >-
+      Operations for creating, updating, deleting, and listing Azure Virtual
+      Networks within subscriptions and resource groups.
 paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks:
     get:

@@ -27,10 +27,6 @@ security:
   - OAuth2Auth: []
 
 tags:
-  - name: Load Balancers
-    description: >-
-      Operations for creating, updating, deleting, and listing Azure Load
-      Balancer resources.
   - name: Backend Address Pools
     description: >-
       Operations for managing backend address pools that define the group
@@ -39,6 +35,10 @@ tags:
     description: >-
       Operations for managing health probes that monitor the health status
       of backend resources.
+  - name: Load Balancers
+    description: >-
+      Operations for creating, updating, deleting, and listing Azure Load
+      Balancer resources.
   - name: Load Balancing Rules
     description: >-
       Operations for managing load balancing rules that define how traffic
