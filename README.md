@@ -1,165 +1,294 @@
-# Azure Networking APIs (azure-networking)
-A collection of Azure Networking APIs for managing virtual networks, load balancers, application gateways, and network security
+# Azure Networking (microsoft-azure-networking)
+A collection of Azure Networking APIs for managing virtual networks, load balancers, application gateways, and network security.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/azure-networking/refs/heads/main/apis.yml)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/microsoft-azure-networking/refs/heads/main/apis.yml)
 
 ## Tags:
 
- - networking, cloud, infrastructure, azure, microsoft
+ - Azure, Cloud, Infrastructure, Microsoft, Networking
 
 ## Timestamps
 
-- **Created:** 2024-01-15 00:00:00+00:00 
-- **Modified:** 2024-01-15 00:00:00+00:00 
+- **Created:** 2024-01-15
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Azure Virtual Networks API
-Manage Azure Virtual Networks (VNets) including subnets, peering, and network configurations
+Manage Azure Virtual Networks (VNets) including subnets, peering, and network configurations.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/virtual-network/](https://azure.microsoft.com/en-us/services/virtual-network/)
 
-
 #### Tags:
 
- - virtual networks, vnet, subnets, peering
+ - Peering, Subnets, Virtual Networks, Vnet
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/virtualNetwork.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/virtual-network/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualnetwork/)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/virtual-network/quickstart-create-virtual-network)
 
 ### Azure Load Balancer API
-Distribute traffic across multiple virtual machines and services with Azure Load Balancer
+Distribute traffic across multiple virtual machines and services with Azure Load Balancer.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/load-balancer/](https://azure.microsoft.com/en-us/services/load-balancer/)
 
-
 #### Tags:
 
- - load balancer, traffic distribution, high availability
+ - High Availability, Load Balancer, Traffic Distribution
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/load-balancer/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/loadBalancer.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/load-balancer/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/load-balancer/)
 
 ### Azure Application Gateway API
-Web traffic load balancer with application-level routing and SSL termination
+Web traffic load balancer with application-level routing and SSL termination.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/application-gateway/](https://azure.microsoft.com/en-us/services/application-gateway/)
 
-
 #### Tags:
 
- - application gateway, web application firewall, ssl termination, layer 7 load balancing
+ - Application Gateway, Layer 7 Load Balancing, Ssl Termination, Web Application Firewall
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/application-gateway/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/applicationGateway.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/application-gateway/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/application-gateway/)
 
 ### Azure Network Security Groups API
-Control network traffic to and from Azure resources with security rules
+Control network traffic to and from Azure resources with security rules.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/network-security-groups/](https://azure.microsoft.com/en-us/services/network-security-groups/)
 
-
 #### Tags:
 
- - security, firewall, network security groups, nsg
+ - Firewall, Network Security Groups, Nsg, Security
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/networkSecurityGroup.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/virtual-network/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualnetwork/networksecuritygroups)
 
 ### Azure VPN Gateway API
-Establish secure cross-premises connectivity between Azure and on-premises networks
+Establish secure cross-premises connectivity between Azure and on-premises networks.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/vpn-gateway/](https://azure.microsoft.com/en-us/services/vpn-gateway/)
 
-
 #### Tags:
 
- - vpn, gateway, hybrid connectivity, site-to-site
+ - Gateway, Hybrid Connectivity, Site-To-Site, Vpn
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/network-gateway/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/virtualNetworkGateway.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/network-gateway/)
 
 ### Azure Traffic Manager API
-DNS-based traffic load balancer for distributing traffic globally
+DNS-based traffic load balancer for distributing traffic globally.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/traffic-manager/](https://azure.microsoft.com/en-us/services/traffic-manager/)
 
-
 #### Tags:
 
- - traffic manager, dns, global load balancing, failover
+ - Dns, Failover, Global Load Balancing, Traffic Manager
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/trafficmanager/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/trafficmanager/resource-manager/Microsoft.Network/stable/2022-04-01/trafficmanager.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/traffic-manager/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/trafficmanager/)
 
 ### Azure ExpressRoute API
-Create private connections between Azure datacenters and on-premises infrastructure
+Create private connections between Azure datacenters and on-premises infrastructure.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/expressroute/](https://azure.microsoft.com/en-us/services/expressroute/)
 
-
 #### Tags:
 
- - expressroute, private connectivity, dedicated connection, hybrid
+ - Dedicated Connection, Expressroute, Hybrid, Private Connectivity
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/expressroute/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/expressRouteCircuit.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/expressroute/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/expressroute/)
 
 ### Azure Firewall API
-Cloud-native network security service with built-in high availability
+Cloud-native network security service with built-in high availability.
 
 **Human URL:** [https://azure.microsoft.com/en-us/services/azure-firewall/](https://azure.microsoft.com/en-us/services/azure-firewall/)
 
-
 #### Tags:
 
- - firewall, security, threat protection, network security
+ - Firewall, Network Security, Security, Threat Protection
 
 #### Properties
 
-- [X-documentation](https://docs.microsoft.com/en-us/rest/api/firewall/)
-- [X-openapi](https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/network/resource-manager/Microsoft.Network/stable/2023-05-01/azureFirewall.json)
-- [X-pricing](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/)
-- [X-authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/firewall/)
+
+### Azure DNS API
+Host DNS zones and manage DNS records using the Azure DNS REST API. Supports creating, updating, and deleting public DNS zones and record sets for domain name resolution within Azure-managed infrastructure.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/dns/](https://learn.microsoft.com/en-us/azure/dns/)
+
+#### Tags:
+
+ - DNS, Domain Name System, Records, Zones
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/dns/)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/dns/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Private DNS API
+Manage private DNS zones for name resolution within Azure virtual networks. Azure Private DNS provides a reliable and secure DNS service to manage and resolve domain names in a virtual network without needing a custom DNS solution.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/dns/private-dns-overview](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview)
+
+#### Tags:
+
+ - DNS, Name Resolution, Private DNS, Virtual Networks
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/dns/privatedns/private-zones)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Front Door API
+Global load balancer and application delivery network that provides fast, reliable, and secure access to web applications. Azure Front Door offers layer 7 load balancing, SSL offload, URL-based routing, and Web Application Firewall integration.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/frontdoor/](https://learn.microsoft.com/en-us/azure/frontdoor/)
+
+#### Tags:
+
+ - CDN, Front Door, Global Load Balancing, Web Application Firewall
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/frontdoor/)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/frontdoor/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure DDoS Protection API
+Manage DDoS protection plans that provide enhanced DDoS mitigation capabilities for Azure Virtual Network resources. Azure DDoS Protection provides countermeasures against sophisticated DDoS threats with adaptive tuning, attack analytics, and alerting.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/ddos-protection/](https://learn.microsoft.com/en-us/azure/ddos-protection/)
+
+#### Tags:
+
+ - DDoS Protection, Network Security, Security, Threat Mitigation
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualnetwork/ddos-protection-plans)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/ddos-protection/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Network Watcher API
+Monitor, diagnose, and gain insights into network performance and health in Azure. Network Watcher provides tools for packet capture, connection troubleshooting, NSG flow logs, and network topology visualization.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/network-watcher/](https://learn.microsoft.com/en-us/azure/network-watcher/)
+
+#### Tags:
+
+ - Diagnostics, Flow Logs, Network Monitoring, Packet Capture
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/network-watcher/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Bastion API
+Fully managed PaaS service that provides secure and seamless RDP and SSH connectivity to virtual machines directly through the Azure portal over TLS. Azure Bastion is deployed inside a virtual network and does not require a public IP on the target VM.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/bastion/](https://learn.microsoft.com/en-us/azure/bastion/)
+
+#### Tags:
+
+ - Bastion, RDP, Remote Access, Secure Connectivity, SSH
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualnetwork/bastion-hosts)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/azure-bastion/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure NAT Gateway API
+Simplify outbound-only internet connectivity for virtual networks. When configured on a subnet, all outbound connectivity uses specified static public IP addresses. NAT Gateway provides on-demand SNAT port allocation without the need for a load balancer or directly attached public IPs.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/nat-gateway/](https://learn.microsoft.com/en-us/azure/nat-gateway/)
+
+#### Tags:
+
+ - IP Address Management, NAT Gateway, Outbound Connectivity, SNAT
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualnetwork/nat-gateways)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/azure-nat-gateway/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Private Link API
+Access Azure PaaS services and customer-owned services over a private endpoint in your virtual network. Azure Private Link eliminates data exposure to the public internet by keeping traffic on the Microsoft global network.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/private-link/](https://learn.microsoft.com/en-us/azure/private-link/)
+
+#### Tags:
+
+ - Network Isolation, Private Endpoint, Private Link, Security
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualnetwork/private-link-services)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/private-link/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Virtual WAN API
+Networking service that provides optimized and automated branch-to-branch connectivity through Azure. Virtual WAN brings together networking, security, and routing functionalities into a single operational interface including VPN, ExpressRoute, and point-to-site connectivity.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/virtual-wan/](https://learn.microsoft.com/en-us/azure/virtual-wan/)
+
+#### Tags:
+
+ - Branch Connectivity, Hybrid Networking, SD-WAN, Virtual WAN
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/virtualwan/)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/virtual-wan/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
+### Azure Web Application Firewall API
+Cloud-native web application firewall service that provides centralized protection for web applications from common exploits and vulnerabilities. Azure WAF can be deployed with Application Gateway, Front Door, and CDN for layer 7 protection.
+
+**Human URL:** [https://learn.microsoft.com/en-us/azure/web-application-firewall/](https://learn.microsoft.com/en-us/azure/web-application-firewall/)
+
+#### Tags:
+
+ - Application Protection, Security, WAF, Web Application Firewall
+
+#### Properties
+
+- [Documentation](https://learn.microsoft.com/en-us/rest/api/application-gateway/web-application-firewall-policies)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/details/web-application-firewall/)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
 
 ## Common Properties
 
-- [X-portal](https://portal.azure.com)
-- [X-support](https://azure.microsoft.com/en-us/support/)
-- [X-status](https://status.azure.com/)
-- [X-blog](https://azure.microsoft.com/en-us/blog/topics/networking/)
-- [X-terms-of-service](https://azure.microsoft.com/en-us/support/legal/)
+- [Portal](https://portal.azure.com)
+- [Documentation](https://learn.microsoft.com/en-us/azure/networking/)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/networking/fundamentals/networking-overview)
+- [Privacy Policy](https://privacy.microsoft.com/en-us/privacystatement)
+- [SDKs](https://learn.microsoft.com/en-us/azure/developer/)
+- [GitHub Organization](https://github.com/Azure)
+- [GitHubRepository](https://github.com/Azure/azure-rest-api-specs)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-virtual-network)
+- [Change Log](https://azure.microsoft.com/en-us/updates/?query=networking)
+- [Pricing](https://azure.microsoft.com/en-us/pricing/)
+- [Sign Up](https://azure.microsoft.com/en-us/free/)
+- [Login](https://portal.azure.com/#home)
+- [Authentication](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+- [Support](https://azure.microsoft.com/en-us/support/)
+- [Status](https://status.azure.com/)
+- [Blog](https://azure.microsoft.com/en-us/blog/topics/networking/)
+- [Terms of Service](https://azure.microsoft.com/en-us/support/legal/)
 
 ## Maintainers
 
-**FN:** Microsoft Azure
+**FN:** Kin Lane
 
-**Email:** azure-support@microsoft.com
+**Email:** kin@apievangelist.com
