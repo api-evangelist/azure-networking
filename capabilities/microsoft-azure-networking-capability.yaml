@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Networking Azure Load Balancer API
+  description: Distribute traffic across multiple virtual machines and services with Azure Load Balancer. This API provides
+    operations for creating, configuring, and managing load balancers including frontend IP configurations, backend address
+    pools, health probes, load balancing rules, inbound NAT rules, and outbound rules.
+  tags:
+  - Microsoft
+  - Azure
+  - Networking
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: microsoft-azure-networking
+    baseUri: https://management.azure.com
+    description: Azure Networking Azure Load Balancer API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{MICROSOFT_AZURE_NETWORKING_TOKEN}}'
+    resources:
+    - name: subscriptions-subscriptionid-resourcegroups-reso
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
+      operations:
+      - name: loadbalancers-list
+        method: GET
+        description: Azure Networking List load balancers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionid-resourcegroups-reso
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}
+      operations:
+      - name: loadbalancers-get
+        method: GET
+        description: Azure Networking Get load balancer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: loadbalancers-createorupdate
+        method: PUT
+        description: Azure Networking Create or update load balancer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: loadbalancers-delete
+        method: DELETE
+        description: Azure Networking Delete load balancer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionid-providers-microsoft
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Network/loadBalancers
+      operations:
+      - name: loadbalancers-listall
+        method: GET
+        description: Azure Networking List all load balancers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionid-resourcegroups-reso
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/backendAddressPools
+      operations:
+      - name: loadbalancerbackendaddresspools-list
+        method: GET
+        description: Azure Networking List backend address pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionid-resourcegroups-reso
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/probes
+      operations:
+      - name: loadbalancerprobes-list
+        method: GET
+        description: Azure Networking List health probes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionid-resourcegroups-reso
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/loadBalancingRules
+      operations:
+      - name: loadbalancerloadbalancingrules-list
+        method: GET
+        description: Azure Networking List load balancing rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: microsoft-azure-networking-rest
+    description: REST adapter for Azure Networking Azure Load Balancer API.
+    resources:
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
+      name: loadbalancers-list
+      operations:
+      - method: GET
+        name: loadbalancers-list
+        description: Azure Networking List load balancers
+        call: microsoft-azure-networking.loadbalancers-list
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}
+      name: loadbalancers-get
+      operations:
+      - method: GET
+        name: loadbalancers-get
+        description: Azure Networking Get load balancer
+        call: microsoft-azure-networking.loadbalancers-get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}
+      name: loadbalancers-createorupdate
+      operations:
+      - method: PUT
+        name: loadbalancers-createorupdate
+        description: Azure Networking Create or update load balancer
+        call: microsoft-azure-networking.loadbalancers-createorupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}
+      name: loadbalancers-delete
+      operations:
+      - method: DELETE
+        name: loadbalancers-delete
+        description: Azure Networking Delete load balancer
+        call: microsoft-azure-networking.loadbalancers-delete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/providers/Microsoft.Network/loadBalancers
+      name: loadbalancers-listall
+      operations:
+      - method: GET
+        name: loadbalancers-listall
+        description: Azure Networking List all load balancers
+        call: microsoft-azure-networking.loadbalancers-listall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/backendAddressPools
+      name: loadbalancerbackendaddresspools-list
+      operations:
+      - method: GET
+        name: loadbalancerbackendaddresspools-list
+        description: Azure Networking List backend address pools
+        call: microsoft-azure-networking.loadbalancerbackendaddresspools-list
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/probes
+      name: loadbalancerprobes-list
+      operations:
+      - method: GET
+        name: loadbalancerprobes-list
+        description: Azure Networking List health probes
+        call: microsoft-azure-networking.loadbalancerprobes-list
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/loadBalancingRules
+      name: loadbalancerloadbalancingrules-list
+      operations:
+      - method: GET
+        name: loadbalancerloadbalancingrules-list
+        description: Azure Networking List load balancing rules
+        call: microsoft-azure-networking.loadbalancerloadbalancingrules-list
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: microsoft-azure-networking-mcp
+    transport: http
+    description: MCP adapter for Azure Networking Azure Load Balancer API for AI agent use.
+    tools:
+    - name: loadbalancers-list
+      description: Azure Networking List load balancers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancers-list
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancers-get
+      description: Azure Networking Get load balancer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancers-get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancers-createorupdate
+      description: Azure Networking Create or update load balancer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancers-createorupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancers-delete
+      description: Azure Networking Delete load balancer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancers-delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancers-listall
+      description: Azure Networking List all load balancers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancers-listall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancerbackendaddresspools-list
+      description: Azure Networking List backend address pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancerbackendaddresspools-list
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancerprobes-list
+      description: Azure Networking List health probes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancerprobes-list
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: loadbalancerloadbalancingrules-list
+      description: Azure Networking List load balancing rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: microsoft-azure-networking.loadbalancerloadbalancingrules-list
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_NETWORKING_TOKEN: MICROSOFT_AZURE_NETWORKING_TOKEN
