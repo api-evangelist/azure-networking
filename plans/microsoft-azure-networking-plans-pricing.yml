@@ -4,305 +4,391 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Azure Networking
 providerId: microsoft-azure-networking
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Azure
   - Cloud
   - Infrastructure
   - Microsoft
   - Networking
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Azure Networking is product-priced (pay-as-you-go) per resource family — Virtual
+  Network, Load Balancer, VPN Gateway, ExpressRoute, Front Door, DNS, Firewall, etc. The Azure
+  Resource Manager (ARM) management/control-plane API used to manage these resources is itself
+  free; charges are only incurred for the underlying resources deployed and for inter-region
+  / outbound data transfer. Reserved Instances and savings plans provide discounts for committed
+  use; Enterprise Agreement and Microsoft Customer Agreement customers receive negotiated terms.
+sources:
+  - https://azure.microsoft.com/en-us/pricing/details/virtual-network/
+  - https://azure.microsoft.com/en-us/pricing/details/load-balancer/
+  - https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/
+  - https://azure.microsoft.com/en-us/pricing/details/azure-firewall/
+  - https://azure.microsoft.com/en-us/pricing/details/dns/
+  - https://azure.microsoft.com/en-us/pricing/details/frontdoor/
+  - https://azure.microsoft.com/en-us/pricing/details/expressroute/
+  - https://azure.microsoft.com/en-us/pricing/details/bandwidth/
 plans:
-  - id: microsoft-azure-networking-free
-    name: Free
+  - id: microsoft-azure-networking-arm-control-plane
+    name: ARM Control Plane (Free)
     type: freemium
-    description: Free entry tier for the Azure Networking API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Calling the Azure Resource Manager management API to create / read / update /
+      delete network resources is free. You pay only for the underlying resources you provision.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Azure Virtual Networks API
-      - name: Azure Load Balancer API
-      - name: Azure Application Gateway API
-      - name: Azure Network Security Groups API
-      - name: Azure VPN Gateway API
-      - name: Azure Traffic Manager API
-      - name: Azure ExpressRoute API
-      - name: Azure Firewall API
-  - id: microsoft-azure-networking-pro
-    name: Professional
-    type: paid
-    description: Production tier for Azure Networking. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Management API requests
+        name: arm_management_requests
         type: metered
-        metric: requests
+        metric: request
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: All ARM CRUD operations on Microsoft.Network resources
+      - name: Subject to ARM throttling limits (see rate-limits/)
+  - id: microsoft-azure-networking-virtual-network
+    name: Virtual Network (VNet)
+    type: usage-based
+    description: Virtual Networks themselves are free. Charges apply for VNet peering, private
+      endpoints, and outbound data transfer.
+    entries:
+      - label: VNet peering — same region (ingress + egress, both sides charged)
+        name: vnet_peering_inregion
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.01 per GB ingress + $0.01 per GB egress'
+        userMultiplied: false
+      - label: VNet peering — cross region / global
+        name: vnet_peering_global
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see vendor pricing — varies by region pair
+        userMultiplied: false
+      - label: Private Endpoint
+        name: private_endpoint
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.01 per hour per endpoint + $0.01 per GB processed'
+        userMultiplied: false
+    elements:
+      - name: Unlimited subnets per VNet
+      - name: Built-in IP address management
+      - name: Network security groups (free)
+  - id: microsoft-azure-networking-load-balancer
+    name: Load Balancer
+    type: usage-based
+    description: Standard Load Balancer is billed by rule count and processed data. Basic Load
+      Balancer is free but lacks SLA.
+    entries:
+      - label: Standard LB — first 5 rules (per hour)
+        name: lb_rules_first5
+        type: metered
+        metric: hour
+        limit: 5
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.025 per hour'
+        userMultiplied: false
+      - label: Standard LB — additional rules
+        name: lb_rules_additional
+        type: metered
+        metric: rule-hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.01 per rule per hour'
+        userMultiplied: false
+      - label: Data processed
+        name: lb_data
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.005 per GB'
+        userMultiplied: false
+    elements:
+      - name: 99.99% SLA on Standard
+      - name: Cross-zone load balancing
+  - id: microsoft-azure-networking-vpn-gateway
+    name: VPN Gateway
+    type: usage-based
+    description: Hourly billing per gateway SKU; egress data transfer billed separately.
+    entries:
+      - label: VpnGw1 (Basic production)
+        name: vpngw1_hour
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.19 per hour'
+        userMultiplied: false
+      - label: VpnGw5 (high throughput)
+        name: vpngw5_hour
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$3.65 per hour'
+        userMultiplied: false
+    elements:
+      - name: Site-to-site / point-to-site VPN
+      - name: Multiple SKU tiers (VpnGw1–VpnGw5, AZ variants)
+  - id: microsoft-azure-networking-application-gateway
+    name: Application Gateway
+    type: usage-based
+    description: Layer-7 load balancer / WAF. Billed per gateway-hour plus capacity units.
+    entries:
+      - label: Standard_v2 fixed
+        name: appgw_v2_hour
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.246 per hour'
+        userMultiplied: false
+      - label: Capacity unit
+        name: appgw_v2_capacity_unit
+        type: metered
+        metric: capacity-unit-hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.0144 per capacity unit per hour'
+        userMultiplied: false
+      - label: WAF_v2 add-on
+        name: waf_v2_hour
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.443 per hour (fixed) + $0.0144 per CU/hr'
+        userMultiplied: false
+    elements:
+      - name: SSL termination
+      - name: Web Application Firewall
+      - name: URL-based routing
+  - id: microsoft-azure-networking-firewall
+    name: Azure Firewall
+    type: usage-based
+    description: Cloud-native firewall; billed per deployment-hour plus data processed.
+    entries:
+      - label: Standard deployment
+        name: firewall_std_hour
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$1.25 per hour'
+        userMultiplied: false
+      - label: Premium deployment
+        name: firewall_premium_hour
+        type: metered
+        metric: hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$1.75 per hour'
+        userMultiplied: false
+      - label: Data processed
+        name: firewall_data
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$0.016 per GB'
+        userMultiplied: false
+    elements:
+      - name: Threat intelligence
+      - name: TLS inspection (Premium)
+      - name: IDPS (Premium)
+  - id: microsoft-azure-networking-dns
+    name: Azure DNS / Private DNS
+    type: usage-based
+    description: Public DNS hosted zones billed per zone per month + per million queries.
+    entries:
+      - label: Hosted zone (first 25)
+        name: dns_zone_first25
+        type: metered
+        metric: zone-month
+        limit: 25
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0.50 per zone per month'
+        userMultiplied: false
+      - label: Hosted zone (over 25)
+        name: dns_zone_over25
+        type: metered
+        metric: zone-month
         limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '$0.10 per zone per month'
+        userMultiplied: false
+      - label: Standard DNS queries
+        name: dns_query_std
+        type: metered
+        metric: query
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1000000
+        price: '$0.40 per million queries (first 1B), $0.20 thereafter'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Azure Virtual Networks API
-      - name: Azure Load Balancer API
-      - name: Azure Application Gateway API
-      - name: Azure Network Security Groups API
-      - name: Azure VPN Gateway API
-      - name: Azure Traffic Manager API
-      - name: Azure ExpressRoute API
-      - name: Azure Firewall API
-      - name: Azure DNS API
-      - name: Azure Private DNS API
-      - name: Azure Front Door API
-      - name: Azure DDoS Protection API
-      - name: Azure Network Watcher API
-      - name: Azure Bastion API
-      - name: Azure NAT Gateway API
-      - name: Azure Private Link API
-      - name: Azure Virtual WAN API
-      - name: Azure Web Application Firewall API
-  - id: microsoft-azure-networking-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Azure Networking. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
+      - name: Authoritative DNS
+      - name: Anycast routing
+  - id: microsoft-azure-networking-front-door
+    name: Front Door
+    type: usage-based
+    description: Global L7 load balancer / CDN. Standard / Premium tiers billed per outbound and
+      per request, plus a base fee on Standard/Premium.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
+      - label: Front Door Standard base
+        name: afd_std_base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$35 per month'
+        userMultiplied: false
+      - label: Front Door Premium base
+        name: afd_prem_base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$330 per month'
+        userMultiplied: false
+      - label: Outbound data — North America / Europe
+        name: afd_egress_na_eu
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: usage
+        geo: NA-EU
+        unit: 1
+        price: '$0.083 per GB (first 10 TB)'
+        userMultiplied: false
+    elements:
+      - name: Global anycast load balancing
+      - name: WAF (Premium)
+      - name: Bot protection (Premium)
+  - id: microsoft-azure-networking-expressroute
+    name: ExpressRoute
+    type: usage-based
+    description: Dedicated private connection to Azure. Metered or unlimited port pricing plus
+      ExpressRoute Gateway and outbound data charges.
+    entries:
+      - label: 1 Gbps metered port
+        name: er_port_1g_metered
+        type: metered
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$300 per month + per-GB egress'
+        userMultiplied: false
+      - label: 10 Gbps unlimited port
+        name: er_port_10g_unlimited
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$10,800 per month'
+        userMultiplied: false
+    elements:
+      - name: Private peering to Microsoft backbone
+      - name: 99.95% SLA
+  - id: microsoft-azure-networking-bandwidth
+    name: Outbound Data Transfer (Egress)
+    type: usage-based
+    description: Cross-region and internet egress is metered separately. First 100 GB per month
+      egress to internet is free.
+    entries:
+      - label: Internet egress — first 100 GB / month
+        name: egress_free_tier
         type: quota
-        metric: requests
+        metric: GB
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0.00'
+        userMultiplied: false
+      - label: Internet egress — Zone 1 (US/EU/CA), tier 100GB–10TB
+        name: egress_zone1
+        type: metered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: US-EU-CA
+        unit: 1
+        price: '$0.087 per GB'
+        userMultiplied: false
+    elements:
+      - name: Tiered volume discount
+      - name: Free inbound data
+  - id: microsoft-azure-networking-enterprise
+    name: Enterprise Agreement / Customer Agreement
+    type: enterprise
+    description: Negotiated pricing with committed-use discounts via EA, MCA-E, or CSP. Includes
+      Reserved Instances, savings plans, and volume tier discounts.
+    entries:
+      - label: Negotiated rates
+        name: ea_negotiated
+        type: subscription
+        metric: contract
         limit: -1
         timeFrame: month
         geo: configurable
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-          - https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
         unit: 1
         price: custom
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Azure Virtual Networks API
-      - name: Azure Load Balancer API
-      - name: Azure Application Gateway API
-      - name: Azure Network Security Groups API
-      - name: Azure VPN Gateway API
-      - name: Azure Traffic Manager API
-      - name: Azure ExpressRoute API
-      - name: Azure Firewall API
-      - name: Azure DNS API
-      - name: Azure Private DNS API
-      - name: Azure Front Door API
-      - name: Azure DDoS Protection API
-      - name: Azure Network Watcher API
-      - name: Azure Bastion API
-      - name: Azure NAT Gateway API
-      - name: Azure Private Link API
-      - name: Azure Virtual WAN API
-      - name: Azure Web Application Firewall API
+      - name: 1-year / 3-year reserved capacity discounts
+      - name: Azure consumption commitment (MACC)
+      - name: Dedicated technical account management
+      - name: Custom data residency
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,10 +9,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Azure Networking
 providerId: microsoft-azure-networking
-publisherName: Azure Networking
-serviceCategory: API
+publisherName: Microsoft Corporation
+serviceCategory: Cloud Networking
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Azure
   - Cloud
@@ -19,268 +21,117 @@ tags:
   - Microsoft
   - Networking
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Azure Networking API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+  - Cost Management
+description: FOCUS-aligned FinOps for Azure Networking — pay-as-you-go per resource family
+  (Virtual Network, Load Balancer, VPN Gateway, ExpressRoute, Front Door, Firewall, DNS) plus
+  metered outbound data transfer. Reserved Instances, Savings Plans, and Azure consumption
+  commitments (MACC) are the primary cost-optimization levers; Cost Management + Billing,
+  Azure Advisor, and the FOCUS-conformant Cost Management exports provide visibility.
+sources:
+  - https://azure.microsoft.com/en-us/pricing/details/virtual-network/
+  - https://learn.microsoft.com/en-us/azure/cost-management-billing/
+  - https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/quick-create-budget
+  - https://focus.finops.org/focus-specification/v1-3/
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Pay-As-You-Go + Committed Use
   billingFrequency: Monthly
-  billingCurrency: USD
+  billingCurrency: USD (settlement currency varies by region)
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
+    - Refund
+    - Credit
   chargeFrequency: Recurring
 focusColumns:
   ServiceName: Azure Networking
-  ServiceCategory: Developer Tools / API
-  ProviderName: Azure Networking
-  PublisherName: Azure Networking
-  InvoiceIssuerName: Azure Networking
+  ServiceCategory: Networking
+  ProviderName: Microsoft Azure
+  PublisherName: Microsoft Corporation
+  InvoiceIssuerName: Microsoft Corporation
   PricingCategory: Usage-Based
-  PricingUnit: request
+  PricingUnit: varies (hour, GB, request, zone-month)
   BillingCurrency: USD
   ChargeCategory: Usage
+  RegionId: varies (eastus, westeurope, etc.)
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: gateway_hours
+    description: Hourly running cost of a deployed gateway resource (VPN Gateway, Application
+      Gateway, ExpressRoute Gateway, NAT Gateway, Bastion).
+    unit: hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - resource_type
+      - sku
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+  - name: data_processed
+    description: Inbound + outbound data passing through a managed networking resource (Load
+      Balancer, App Gateway, Firewall, NAT Gateway).
     unit: GB
     aggregation: sum
     dimensions:
-      - api
+      - resource_type
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+  - name: data_egress_internet
+    description: Outbound data transfer from Azure to the public internet, charged in tiered
+      bands by source region zone.
+    unit: GB
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Azure Virtual Networks API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks
-    tags:
-      - Peering
-      - Subnets
-      - Virtual Networks
-      - Vnet
-    serviceName: Azure Virtual Networks API
-    serviceCategory: API
-  - name: Azure Load Balancer API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers
-    tags:
-      - High Availability
-      - Load Balancer
-      - Traffic Distribution
-    serviceName: Azure Load Balancer API
-    serviceCategory: API
-  - name: Azure Application Gateway API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways
-    tags:
-      - Application Gateway
-      - Layer 7 Load Balancing
-      - Ssl Termination
-      - Web Application Firewall
-    serviceName: Azure Application Gateway API
-    serviceCategory: API
-  - name: Azure Network Security Groups API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups
-    tags:
-      - Firewall
-      - Network Security Groups
-      - Nsg
-      - Security
-    serviceName: Azure Network Security Groups API
-    serviceCategory: API
-  - name: Azure VPN Gateway API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways
-    tags:
-      - Gateway
-      - Hybrid Connectivity
-      - Site-To-Site
-      - Vpn
-    serviceName: Azure VPN Gateway API
-    serviceCategory: API
-  - name: Azure Traffic Manager API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles
-    tags:
-      - Dns
-      - Failover
-      - Global Load Balancing
-      - Traffic Manager
-    serviceName: Azure Traffic Manager API
-    serviceCategory: API
-  - name: Azure ExpressRoute API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits
-    tags:
-      - Dedicated Connection
-      - Expressroute
-      - Hybrid
-      - Private Connectivity
-    serviceName: Azure ExpressRoute API
-    serviceCategory: API
-  - name: Azure Firewall API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls
-    tags:
-      - Firewall
-      - Network Security
-      - Security
-      - Threat Protection
-    serviceName: Azure Firewall API
-    serviceCategory: API
-  - name: Azure DNS API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsZones
-    tags:
-      - DNS
-      - Domain Name System
-      - Records
-      - Zones
-    serviceName: Azure DNS API
-    serviceCategory: API
-  - name: Azure Private DNS API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones
-    tags:
-      - DNS
-      - Name Resolution
-      - Private DNS
-      - Virtual Networks
-    serviceName: Azure Private DNS API
-    serviceCategory: API
-  - name: Azure Front Door API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors
-    tags:
-      - CDN
-      - Front Door
-      - Global Load Balancing
-      - Web Application Firewall
-    serviceName: Azure Front Door API
-    serviceCategory: API
-  - name: Azure DDoS Protection API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ddosProtectionPlans
-    tags:
-      - DDoS Protection
-      - Network Security
-      - Security
-      - Threat Mitigation
-    serviceName: Azure DDoS Protection API
-    serviceCategory: API
-  - name: Azure Network Watcher API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers
-    tags:
-      - Diagnostics
-      - Flow Logs
-      - Network Monitoring
-      - Packet Capture
-    serviceName: Azure Network Watcher API
-    serviceCategory: API
-  - name: Azure Bastion API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts
-    tags:
-      - Bastion
-      - RDP
-      - Remote Access
-      - Secure Connectivity
-      - SSH
-    serviceName: Azure Bastion API
-    serviceCategory: API
-  - name: Azure NAT Gateway API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/natGateways
-    tags:
-      - IP Address Management
-      - NAT Gateway
-      - Outbound Connectivity
-      - SNAT
-    serviceName: Azure NAT Gateway API
-    serviceCategory: API
-  - name: Azure Private Link API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateLinkServices
-    tags:
-      - Network Isolation
-      - Private Endpoint
-      - Private Link
-      - Security
-    serviceName: Azure Private Link API
-    serviceCategory: API
-  - name: Azure Virtual WAN API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans
-    tags:
-      - Branch Connectivity
-      - Hybrid Networking
-      - SD-WAN
-      - Virtual WAN
-    serviceName: Azure Virtual WAN API
-    serviceCategory: API
-  - name: Azure Web Application Firewall API
-    baseURL: https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies
-    tags:
-      - Application Protection
-      - Security
-      - WAF
-      - Web Application Firewall
-    serviceName: Azure Web Application Firewall API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - source_region
+      - destination_zone
+      - tier_band
+  - name: vnet_peering
+    description: VNet peering ingress + egress, in-region or cross-region.
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - peering_type
+      - region_pair
+  - name: dns_queries
+    description: Resolution requests against Azure DNS hosted zones.
+    unit: query
+    aggregation: sum
+    dimensions:
+      - zone
+      - record_type
+  - name: dns_zones
+    description: Active DNS hosted zones billed per month.
+    unit: zone-month
+    aggregation: max
+    dimensions:
+      - zone_type
+  - name: rule_count
+    description: Active load-balancing / WAF / firewall rules contributing to capacity charges.
+    unit: rule-hour
+    aggregation: sum
+    dimensions:
+      - resource_type
+      - rule_type
+principles:
+  - name: Visibility
+    description: Use Microsoft Cost Management + Billing, Azure Monitor, and the FOCUS-aligned
+      Cost Management Exports v2 to ingest line-level cost data into your cost analytics platform.
+      Network Watcher, NSG Flow Logs, and VNet flow logs reveal traffic patterns driving egress
+      and peering charges.
+  - name: Allocation
+    description: Tag every networking resource with cost-center, environment, application,
+      and owner. Use Azure Policy to enforce required tags. Management Groups + Subscriptions
+      provide hierarchical chargeback boundaries; FOCUS columns SubAccountId / ResourceTags
+      carry the tags through to billing exports.
+  - name: Optimization
+    description: Right-size gateway SKUs (VpnGw1 vs VpnGw5), purchase 1- or 3-year Reserved
+      Capacity for ExpressRoute and Application Gateway, use Azure Front Door / Private Link
+      to avoid public-internet egress, deploy NAT Gateway instead of Public IPs to minimize
+      SNAT cost, and consolidate Standard Load Balancer rules. Azure Advisor surfaces idle
+      gateways and underutilized firewalls.
+  - name: Accountability
+    description: Set Cost Management budgets with action-group alerts at 50/80/100% thresholds
+      per subscription/resource group. Network architects own egress topology decisions; tag
+      the workload owner so egress overage routes to the right team. Review monthly cost
+      against unit economics (egress per active user, gateway-hour per region served).
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

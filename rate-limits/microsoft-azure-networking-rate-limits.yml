@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Azure Networking
 providerId: microsoft-azure-networking
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Azure
   - Cloud
@@ -12,163 +13,91 @@ tags:
   - Microsoft
   - Networking
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Azure Networking API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+description: Azure Networking management API calls go through Azure Resource Manager (ARM)
+  and the Microsoft.Network resource provider. ARM applies a token-bucket throttling model
+  per region, per subscription, per service principal, per operation type. The Microsoft.Network
+  resource provider applies an additional per-subscription per-region cap (writes/deletes
+  1,000 per 5 minutes; reads 10,000 per 5 minutes). Throttled requests return HTTP 429 with
+  a Retry-After header. Limits can be raised by support request.
+sources:
+  - https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/request-limits-and-throttling
+  - https://learn.microsoft.com/en-us/azure/networking/
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
+  remainingSubscriptionReads: x-ms-ratelimit-remaining-subscription-reads
+  remainingSubscriptionWrites: x-ms-ratelimit-remaining-subscription-writes
+  remainingSubscriptionDeletes: x-ms-ratelimit-remaining-subscription-deletes
+  remainingTenantReads: x-ms-ratelimit-remaining-tenant-reads
+  remainingTenantWrites: x-ms-ratelimit-remaining-tenant-writes
+  remainingResource: x-ms-ratelimit-remaining-resource
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
+  retryableErrorDueToAnotherOperation: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - name: ARM subscription reads (token bucket)
+    scope: subscription/region/serviceprincipal
+    metric: requests_per_second
+    limit: 25
+    timeFrame: second
+    notes: Bucket size 250 tokens; refill rate 25 tokens/sec. Global subscription cap is 15× per
+      operation type across all service principals.
+  - name: ARM subscription writes (token bucket)
+    scope: subscription/region/serviceprincipal
+    metric: requests_per_second
     limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Azure Virtual Networks API
-      - Azure Load Balancer API
-      - Azure Application Gateway API
-      - Azure Network Security Groups API
-      - Azure VPN Gateway API
-      - Azure Traffic Manager API
-      - Azure ExpressRoute API
-      - Azure Firewall API
-      - Azure DNS API
-      - Azure Private DNS API
-      - Azure Front Door API
-      - Azure DDoS Protection API
-      - Azure Network Watcher API
-      - Azure Bastion API
-      - Azure NAT Gateway API
-      - Azure Private Link API
-      - Azure Virtual WAN API
-      - Azure Web Application Firewall API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
+    timeFrame: second
+    notes: Bucket size 200 tokens; refill rate 10 tokens/sec.
+  - name: ARM subscription deletes (token bucket)
+    scope: subscription/region/serviceprincipal
+    metric: requests_per_second
+    limit: 10
+    timeFrame: second
+    notes: Bucket size 200 tokens; refill rate 10 tokens/sec.
+  - name: ARM tenant reads
+    scope: tenant
+    metric: requests_per_second
+    limit: 25
+    timeFrame: second
+    notes: Bucket size 250; refill 25/sec.
+  - name: Microsoft.Network resource provider — write/delete (PUT)
+    scope: subscription/region
+    metric: requests_per_5_minutes
     limit: 1000
-    timeFrame: month
-    applies:
-      - Azure Virtual Networks API
-      - Azure Load Balancer API
-      - Azure Application Gateway API
-      - Azure Network Security Groups API
-      - Azure VPN Gateway API
-      - Azure Traffic Manager API
-      - Azure ExpressRoute API
-      - Azure Firewall API
-      - Azure DNS API
-      - Azure Private DNS API
-      - Azure Front Door API
-      - Azure DDoS Protection API
-      - Azure Network Watcher API
-      - Azure Bastion API
-      - Azure NAT Gateway API
-      - Azure Private Link API
-      - Azure Virtual WAN API
-      - Azure Web Application Firewall API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
     timeFrame: minute
-    applies:
-      - Azure Virtual Networks API
-      - Azure Load Balancer API
-      - Azure Application Gateway API
-      - Azure Network Security Groups API
-      - Azure VPN Gateway API
-      - Azure Traffic Manager API
-      - Azure ExpressRoute API
-      - Azure Firewall API
-      - Azure DNS API
-      - Azure Private DNS API
-      - Azure Front Door API
-      - Azure DDoS Protection API
-      - Azure Network Watcher API
-      - Azure Bastion API
-      - Azure NAT Gateway API
-      - Azure Private Link API
-      - Azure Virtual WAN API
-      - Azure Web Application Firewall API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Azure Virtual Networks API
-      - Azure Load Balancer API
-      - Azure Application Gateway API
-      - Azure Network Security Groups API
-      - Azure VPN Gateway API
-      - Azure Traffic Manager API
-      - Azure ExpressRoute API
-      - Azure Firewall API
-      - Azure DNS API
-      - Azure Private DNS API
-      - Azure Front Door API
-      - Azure DDoS Protection API
-      - Azure Network Watcher API
-      - Azure Bastion API
-      - Azure NAT Gateway API
-      - Azure Private Link API
-      - Azure Virtual WAN API
-      - Azure Web Application Firewall API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
+    notes: Per-subscription per-region cap on Microsoft.Network PUT/DELETE.
+  - name: Microsoft.Network resource provider — read (GET)
+    scope: subscription/region
+    metric: requests_per_5_minutes
+    limit: 10000
     timeFrame: minute
-    applies:
-      - Azure Virtual Networks API
-      - Azure Load Balancer API
-      - Azure Application Gateway API
-      - Azure Network Security Groups API
-      - Azure VPN Gateway API
-      - Azure Traffic Manager API
-      - Azure ExpressRoute API
-      - Azure Firewall API
-      - Azure DNS API
-      - Azure Private DNS API
-      - Azure Front Door API
-      - Azure DDoS Protection API
-      - Azure Network Watcher API
-      - Azure Bastion API
-      - Azure NAT Gateway API
-      - Azure Private Link API
-      - Azure Virtual WAN API
-      - Azure Web Application Firewall API
+    notes: Per-subscription per-region cap on Microsoft.Network GET.
+  - name: Azure DNS query plane
+    scope: hosted-zone
+    metric: queries_per_second
+    limit: see vendor docs
+    notes: Authoritative resolvers handle very high QPS via anycast; query-plane is not subject
+      to ARM throttling.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Token bucket algorithm
+    description: ARM uses a regional token bucket. Each request consumes a token; tokens refill
+      at the documented rate. When the bucket is empty, requests return 429 with Retry-After.
+  - name: Exponential backoff with Retry-After
+    description: Clients must honor the Retry-After response header. Azure SDKs implement
+      automatic backoff; custom clients should use exponential backoff with jitter.
+  - name: Multi-instance global cap
+    description: The global subscription-wide cap is 15× the per-service-principal limit per
+      operation type to prevent any single principal from saturating the subscription.
+  - name: getBatch for metrics
+    description: Heavy use of the */providers/microsoft.insights/metrics API is a common cause
+      of throttling. Microsoft recommends switching to the metrics:getBatch API to query
+      multiple resources per request.
+  - name: Limit increase via support
+    description: Resource-provider-specific limits can be raised by opening an Azure support
+      ticket; the ARM-level token bucket is generally fixed.
+  - name: RetryableErrorDueToAnotherOperation
+    description: Microsoft.Network may return 429 with code RetryableErrorDueToAnotherOperation
+      when the target resource is locked by a concurrent operation; retry with backoff.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
