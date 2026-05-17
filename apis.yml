@@ -38,7 +38,7 @@ apis:
         url: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
       - type: Documentation
         url: https://learn.microsoft.com/en-us/rest/api/virtualnetwork/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/azure/virtual-network/quickstart-create-virtual-network
   - name: Azure Load Balancer API
     description: >-
@@ -413,23 +413,23 @@ common:
     url: https://portal.azure.com
   - type: Documentation
     url: https://learn.microsoft.com/en-us/azure/networking/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://learn.microsoft.com/en-us/azure/networking/fundamentals/networking-overview
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://privacy.microsoft.com/en-us/privacystatement
   - type: SDKs
     url: https://learn.microsoft.com/en-us/azure/developer/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/Azure
   - type: GitHubRepository
     url: https://github.com/Azure/azure-rest-api-specs
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/azure-virtual-network
-  - type: Change Log
+  - type: ChangeLog
     url: https://azure.microsoft.com/en-us/updates/?query=networking
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/
-  - type: Sign Up
+  - type: SignUp
     url: https://azure.microsoft.com/en-us/free/
   - type: Login
     url: https://portal.azure.com/#home
